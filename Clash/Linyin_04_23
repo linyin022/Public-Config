@@ -28,11 +28,10 @@ ruleset=DIRECT,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ru
 ruleset=DIRECT,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Steam.list
 ruleset=DIRECT,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaIp.list
 ruleset=DIRECT,[]GEOIP,CN
-ruleset=Final,[]FINAL
+ruleset=Proxy,[]MATCH
 
 custom_proxy_group=Proxy`select`[]HK`[]SG`[]TW`[]JP`.*
 custom_proxy_group=Netflix`select`[]Proxy`[]HK`[]SG`[]TW`[]JP
-custom_proxy_group=Final`select`[]Proxy`[]DIRECT
 custom_proxy_group=HK`select`(港|HK|Hong Kong)
 custom_proxy_group=SG`select`(新加坡|坡|狮城|SG|Singapore)
 custom_proxy_group=TW`select`(台|新北|彰化|TW|Taiwan)
