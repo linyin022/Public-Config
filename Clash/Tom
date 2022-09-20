@@ -25,6 +25,7 @@ ruleset=Proxy,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/
 ruleset=Proxy,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/GuoWaiMeiTi_2.list
 ruleset=Proxy,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/GuoWaiWangZhan.list
 ruleset=Proxy,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/WeiRuanFuWu.list
+ruleset=DIRECT,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaIp.list
 ruleset=DIRECT,[]GEOIP,CN
 ruleset=Proxy,[]MATCH
 
