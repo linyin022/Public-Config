@@ -7,6 +7,7 @@ ruleset=Netflix,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/lis
 ruleset=Disney+,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/DisneyPlus.list
 ;ruleset=SpeedTest,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Speedtest/Speedtest.list
 ruleset=Telegram,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Telegram/Telegram.list
+ruleset=Proxy,https://raw.githubusercontent.com/linyin022/Public-Config/main/Clash/Ruleset/emby.list
 ruleset=Proxy,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/TikTok.list
 ruleset=Proxy,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/Spotify.list
 ;StreamingSE 中国流媒体服务（面向海外版本）
