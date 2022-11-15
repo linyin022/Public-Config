@@ -1,17 +1,17 @@
 [custom]
 
 ruleset=DIRECT,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
-ruleset=DIRECT,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/AppleAll.list
-ruleset=YouTube,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/YOUTUBE.list
-ruleset=Netflix,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/NETFLIX.list
-ruleset=Hong Kong,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/DisneyPlus.list
+ruleset=DIRECT,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Apple/Apple.list
+ruleset=YouTube,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/YouTube.list
+ruleset=Netflix,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/Netflix.list
+ruleset=Hong Kong,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/DisneyPlus.list
 ruleset=Telegram,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Telegram/Telegram.list
 ruleset=Proxy,https://raw.githubusercontent.com/linyin022/Public-Config/main/Clash/Ruleset/emby.list
-ruleset=Proxy,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/TikTok.list
-ruleset=Proxy,https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/list/Spotify.list
-ruleset=Proxy,https://raw.githubusercontent.com/flyhigherpi/merlinclash_clash_related/master/Rules/ZHANG/GuoWaiWangZhan.list
-;StreamingSE 中国流媒体服务（面向海外版本）
-ruleset=DIRECT,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/StreamingSE.list
+# Streaming 国际流媒体服务
+ruleset=Proxy,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Streaming.list
+#ruleset=Proxy,https://raw.githubusercontent.com/flyhigherpi/merlinclash_clash_related/master/Rules/ZHANG/GuoWaiWangZhan.list
+# Global 全球加速
+ruleset=Proxy,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Global.list
 ruleset=DIRECT,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/China.list
 ruleset=DIRECT,[]GEOIP,CN
 ruleset=Proxy,[]MATCH
