@@ -13,12 +13,12 @@ ruleset=DIRECT,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Su
 ruleset=DIRECT,[]GEOIP,CN
 ruleset=Proxy,[]MATCH
 
-custom_proxy_group=Proxy`select`[]Hong Kong`[]JanPan`[]HK&JP`[]Other Areas`[]DIRECT
-custom_proxy_group=Telegram`select`[]Hong Kong`[]JanPan
-custom_proxy_group=YouTube`select`[]Hong Kong`[]JanPan`[]Singapore`[]TaiWan
-custom_proxy_group=Netflix`select`[]Singapore`[]JanPan
+custom_proxy_group=Proxy`select`[]Hong Kong`[]JaPan`[]HK&JP`[]Other Areas`[]DIRECT
+custom_proxy_group=Telegram`select`[]Hong Kong`[]JaPan
+custom_proxy_group=YouTube`select`[]Hong Kong`[]JaPan`[]Singapore`[]TaiWan
+custom_proxy_group=Netflix`select`[]Singapore`[]JaPan
 custom_proxy_group=Hong Kong`select`(港|HK|Hong Kong)
-custom_proxy_group=JanPan`select`(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)
+custom_proxy_group=JaPan`select`(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)
 custom_proxy_group=TaiWan`select`(台|新北|彰化|TW|Taiwan)
 custom_proxy_group=Singapore`select`(新加坡|坡|狮城|SG|Singapore)
 custom_proxy_group=Other Areas`select`((?=.*)^((?!(港|HK|Hong Kong|新加坡|坡|狮城|SG|Singapore|台|新北|彰化|TW|Taiwan|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).)*$)
