@@ -20,11 +20,11 @@ custom_proxy_group=Netflix`select`[]Singapore`[]Japan`[]Hong Kong
 custom_proxy_group=Hong Kong`select`(港|HK|Hong Kong)
 custom_proxy_group=Japan`select`(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)
 custom_proxy_group=Other Areas`select`((?=.*)^((?!(港|HK|Hong Kong|新加坡|坡|狮城|SG|Singapore|台|新北|彰化|TW|Taiwan|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).)*$)
-custom_proxy_group=HK&JP`fallback`[]HK`[]JP`http://www.gstatic.com/generate_204`180
-custom_proxy_group=HK`load-balance`(港|HK|Hong Kong)
-custom_proxy_group=JP`load-balance`(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)
-custom_proxy_group=TaiWan`load-balance`(台|新北|彰化|TW|Taiwan)`http://www.gstatic.com/generate_204`180
-custom_proxy_group=Singapore`load-balance`(新加坡|坡|狮城|SG|Singapore)`http://www.gstatic.com/generate_204`180
+custom_proxy_group=HK&JP`fallback`[]HK`[]JP`http://www.gstatic.com/generate_204`50
+custom_proxy_group=HK`load-balance`(港|HK|Hong Kong)`http://www.gstatic.com/generate_204`50
+custom_proxy_group=JP`load-balance`(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)`http://www.gstatic.com/generate_204`50
+custom_proxy_group=TaiWan`load-balance`(台|新北|彰化|TW|Taiwan)`http://www.gstatic.com/generate_204`50
+custom_proxy_group=Singapore`load-balance`(新加坡|坡|狮城|SG|Singapore)`http://www.gstatic.com/generate_204`50
 
 
 enable_rule_generator=true
