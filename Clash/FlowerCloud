@@ -15,7 +15,7 @@ ruleset=Proxy,[]MATCH
 
 custom_proxy_group=Proxy`select`[]Hong Kong`[]Japan`[]HK&JP`[]Other Areas`[]DIRECT
 custom_proxy_group=Telegram`select`[]Hong Kong`[]Japan
-custom_proxy_group=YouTube`select`[]Hong Kong`[]Japan`[]TaiWan
+custom_proxy_group=YouTube`select`[]Hong Kong`[]Japan
 custom_proxy_group=Netflix`select`[]Singapore`[]Japan`[]Hong Kong
 custom_proxy_group=Hong Kong`select`(香港.*?实验性)
 custom_proxy_group=Japan`select`(日本.*?实验性)
