@@ -9,10 +9,10 @@ ruleset=DIRECT,https://raw.githubusercontent.com/VirgilClyne/GetSomeFries/main/r
 ruleset=DIRECT,[]GEOIP,CN
 ruleset=Proxy,[]MATCH
 
-custom_proxy_group=Proxy`select`[]Others`[]Global
+custom_proxy_group=Proxy`select`[]Others`[]Global`[]Others
 custom_proxy_group=Global`fallback`(港|HK|Hong Kong).*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)`http://www.gstatic.com/generate_204`180
 custom_proxy_group=Streaming`select`(新加坡|坡|狮城|SG|Singapore)
-custom_proxy_group=Others`select`*
+custom_proxy_group=Others`select`.*
 
 enable_rule_generator=true
 overwrite_original_rules=true
