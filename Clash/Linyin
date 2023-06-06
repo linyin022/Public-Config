@@ -5,7 +5,7 @@ ruleset=Streaming,https://raw.githubusercontent.com/DivineEngine/Profiles/master
 ruleset=Proxy,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Global.list
 ruleset=DIRECT,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Apple/Apple.list
 ruleset=DIRECT,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/China.list
-ruleset=DIRECT,https://raw.githubusercontent.com/VirgilClyne/GetSomeFries/main/ruleset/ASN.China.list
+ruleset=DIRECT,https://cdn.jsdelivr.net/gh/soffchen/GeoIP2-CN@release/clash-ruleset.list
 ruleset=DIRECT,[]GEOIP,CN
 ruleset=Proxy,[]MATCH
 
