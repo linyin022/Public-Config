@@ -13,7 +13,7 @@ ruleset=Proxy,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Sur
 ruleset=Proxy,https://raw.githubusercontent.com/linyin022/Public-Config/main/Clash/Ruleset/domain.list
 ruleset=DIRECT,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Apple/Apple.list
 ruleset=DIRECT,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/China.list
-ruleset=DIRECT,https://cdn.jsdelivr.net/gh/soffchen/GeoIP2-CN@release/clash-ruleset.list
+#ruleset=DIRECT,https://cdn.jsdelivr.net/gh/soffchen/GeoIP2-CN@release/clash-ruleset.list
 ruleset=DIRECT,[]GEOIP,CN
 ruleset=Proxy,[]MATCH
 
