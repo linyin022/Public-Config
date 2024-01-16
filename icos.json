@@ -1,0 +1,10 @@
+{
+  "name": "Linyin TheMagic-Icons",
+  "description": "机场图标",
+  "icons": [
+    {"name":"LinkCube", "url":"https://raw.githubusercontent.com/linyin022/Public-Config/main/TheMagic-Icons/LinkCube.png"},
+    {"name":"Flower", "url":"https://raw.githubusercontent.com/linyin022/Public-Config/main/TheMagic-Icons/Flower.png"},
+    {"name":"NaiU", "url":"https://raw.githubusercontent.com/linyin022/Public-Config/main/TheMagic-Icons/NaiU.png.png"},
+    {"name":"Tpap", "url":"https://raw.githubusercontent.com/linyin022/Public-Config/main/TheMagic-Icons/TPAP.png.png"}
+  ]
+}
