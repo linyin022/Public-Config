@@ -3,8 +3,10 @@
 ruleset=DIRECT,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat.list
 ruleset=Telegram,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.list
 ruleset=REJECT,https://ruleset.skk.moe/Clash/non_ip/sogouinput.txt
-ruleset=Proxy,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list
-ruleset=Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.list
+ruleset=OpenAI,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list
+ruleset=Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.list
+ruleset=Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.list
+ruleset=Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EA/EA.list
 ruleset=Proxy,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.list
 ruleset=Streaming,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Streaming.list
 ruleset=Download,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Download/Download.list
@@ -17,6 +19,7 @@ ruleset=Proxy,[]MATCH
 custom_proxy_group=Proxy`select`.*
 custom_proxy_group=Streaming`select`(新加坡|坡|狮城|SG|Singapore)
 custom_proxy_group=Telegram`select`[]Proxy`(新加坡|坡|狮城|SG|Singapore|港|HK|hk|Hong Kong|HongKong|hongkong|Hongkong)
+custom_proxy_group=OpenAI`select`[]Proxy`(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|新加坡|坡|狮城|SG|Singapore)
 custom_proxy_group=Game`select`[]Proxy`[]DIRECT
 custom_proxy_group=Download`select`[]Proxy`[]DIRECT
 
