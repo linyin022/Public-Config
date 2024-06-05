@@ -20,7 +20,7 @@ ruleset=Proxy,[]MATCH
 custom_proxy_group=Proxy`select`.*
 custom_proxy_group=Streaming`select`(新加坡|坡|狮城|SG|Singapore)
 custom_proxy_group=Telegram`select`[]Proxy`(新加坡|坡|狮城|SG|Singapore|港|HK|hk|Hong Kong|HongKong|hongkong|Hongkong)
-custom_proxy_group=OpenAI`select`[]Proxy`(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|新加坡|坡|狮城|SG|Singapore)
+custom_proxy_group=OpenAI`select`[]Proxy`(日本|[^-]日|JP|Japan|新加坡|坡|狮城|SG|Singapore|美|US|United States)
 custom_proxy_group=Game`select`[]Proxy`[]DIRECT
 custom_proxy_group=Download`select`[]Proxy`[]DIRECT
 
