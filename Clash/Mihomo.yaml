@@ -76,7 +76,7 @@ dns:
   'geosite:gfw,geolocation-!cn': [quic://223.5.5.5, quic://223.6.6.6, https://1.12.12.12/dns-query, https://120.53.53.53/dns-query]
 
 # 策略组引用相关参数
-pg: &pg {type: select, proxies: [Proxies, HKG, SGP, JPN, DIRECT]}
+pg: &pg {type: select, proxies: [Proxies, HKG, SGP, JPN, USA, DIRECT]}
 # 订阅更新和延迟测试相关参数
 p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://latency-test.skk.moe/endpoint, interval: 1800}}
 # 自动选择策略组：选取延迟最低节点
@@ -93,8 +93,8 @@ c: &c {type: http, behavior: classical, format: text, interval: 86400}
 d: &d {type: http, behavior: domain, format: text, interval: 86400}
 # ipcidr规则相关
 i: &i {type: http, behavior: ipcidr, format: text, interval: 86400}
-# default
-x: &x {type: select, include-all: true, filter: "(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)|(?i)🇯🇵|日本|东京|(\b(JP|Japan)\b)"}
+# telegram
+telegram: &telegram {type: select, include-all: true, filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)|(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)"}
 
 proxy-providers:
   Subscribe: {<<: *p, path: ./proxy-providers/Sub.yaml, url: http://your-service-provider}
@@ -105,23 +105,25 @@ proxy-groups:
 
   #分流分组
 
-  - {name: Proxies, type: select, include-all: true, proxies: [HKG, SGP, JPN, DIRECT], icon: https://raw.githubusercontent.com/Orz-3/face/master/Global.png}
+  - {name: Proxies, type: select, include-all: true, proxies: [HKG, SGP, JPN, USA], icon: https://raw.githubusercontent.com/Orz-3/face/master/Global.png}
 
   - {name: Streaming, <<: *select, filter: "(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)", icon: https://raw.githubusercontent.com/Orz-3/face/master/YouTube.png}
 
-  - {name: Telegram, <<: *select, filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)|(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)", icon: https://raw.githubusercontent.com/Orz-3/face/master/Message.png}
+  - {name: Telegram, <<: *telegram, icon: https://raw.githubusercontent.com/Orz-3/face/master/Message.png}
 
-  - {name: AI, <<: *x, icon: https://raw.githubusercontent.com/Orz-3/face/master/Static.png}
+  - {name: AI, <<: *pg, icon: https://raw.githubusercontent.com/Orz-3/face/master/Static.png}
 
-  - {name: Game, <<: *pg, icon: https://raw.githubusercontent.com/Orz-3/face/master/Game.png}
+#  - {name: Game, <<: *pg, icon: https://raw.githubusercontent.com/Orz-3/face/master/Game.png}
 
   #节点地区分组
 
-  - {name: HKG, <<: *fallback, filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)", icon: https://raw.githubusercontent.com/Orz-3/face/master/HK.png}
+  - {name: HKG, <<: *select, filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)", icon: https://raw.githubusercontent.com/Orz-3/face/master/HK.png}
 
-  - {name: SGP, <<: *fallback, filter: "(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)", icon: https://raw.githubusercontent.com/Orz-3/face/master/SG.png}
+  - {name: SGP, <<: *select, filter: "(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)", icon: https://raw.githubusercontent.com/Orz-3/face/master/SG.png}
 
-  - {name: JPN, <<: *fallback, filter: "(?i)🇯🇵|日本|东京|(\b(JP|Japan)\b)", icon: https://raw.githubusercontent.com/Orz-3/face/master/JP.png}
+  - {name: JPN, <<: *select, filter: "(?i)🇯🇵|日本|东京|(\b(JP|Japan)\b)", icon: https://raw.githubusercontent.com/Orz-3/face/master/JP.png}
+
+  - {name: USA, <<: *select, filter: "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)", icon: https://raw.githubusercontent.com/Orz-3/face/master/US.png}
 
 rule-providers:
 
@@ -136,8 +138,8 @@ rule-providers:
   Telegram: {<<: *c, path: ./rule-providers/Telegram.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Telegram.list}
 
   # Game
-  Steam: {<<: *c, path: ./rule-providers/Steam.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Steam.list}
-  Epic: {<<: *c, path: ./rule-providers/Epic.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Epic.list}
+#  Steam: {<<: *c, path: ./rule-providers/Steam.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Steam.list}
+#  Epic: {<<: *c, path: ./rule-providers/Epic.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Epic.list}
 
   # AI平台
   AI: {<<: *c, path: ./rule-providers/AI.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/AI.list}
@@ -156,8 +158,8 @@ rules:
   - RULE-SET,YouTube,Proxies
   - RULE-SET,Google,Proxies
   - RULE-SET,Telegram,Telegram
-  - RULE-SET,Steam,Game
-  - RULE-SET,Epic,Game
+#  - RULE-SET,Steam,Game
+#  - RULE-SET,Epic,Game
   - RULE-SET,Spotify,Streaming
   - RULE-SET,Bahamut,Streaming
   - RULE-SET,Netflix,Streaming
