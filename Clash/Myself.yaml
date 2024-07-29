@@ -1,0 +1,81 @@
+# 混合端口 HTTP和SOCKS5用一个端口
+mixed-port: 7890
+# TCP 并发连接所有 IP, 将使用最快握手的 TCP
+tcp-concurrent: true
+# 规则模式：rule/global/direct/script
+mode: rule
+# 设置日志输出级别: silent/error/warning/info/debug
+log-level: error
+# 全局 TLS 指纹
+global-client-fingerprint: chrome
+# 匹配所有进程（always/strict/off）
+find-process-mode: strict
+
+profile:
+  store-selected: true
+
+geodata-mode: true
+geox-url:
+  geosite: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite-lite.dat"
+  geoip: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip-lite.dat"
+  mmdb: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country-lite.mmdb"
+geo-auto-update: true
+geo-update-interval: 24
+dns:
+  enable: true
+  prefer-h3: true
+  ipv6: true
+  use-system-hosts: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fallback:
+    - https://doh.apad.pro/dns-query
+    - https://dns.cooluc.com/dns-query
+  default-nameserver:
+    - tls://223.5.5.5
+    - tls://1.12.12.12
+  nameserver:
+    - tls://223.5.5.5
+    - tls://1.12.12.12
+
+# 订阅更新和延迟测试相关参数
+query_sub: &query_sub {type: http, interval: 86400, health-check: {enable: true, url: http://latency-test.skk.moe/endpoint, interval: 1800}}
+telegram: &telegram {type: select, include-all: true, filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)|(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)"}
+select: &select {type: select, include-all: true}
+# classical规则相关
+c: &c {type: http, behavior: classical, format: text, interval: 86400}
+# domain规则相关
+d: &d {type: http, behavior: domain, format: text, interval: 86400}
+# ipcidr规则相关
+i: &i {type: http, behavior: ipcidr, format: text, interval: 86400}
+
+##订阅规则
+#proxy-providers:
+#  Subscribe: {<<: *query_sub, path: ./proxy-providers/Sub.yaml, url: http://your-service-provider}
+
+#分流策略
+proxy-groups:
+  - {name: Proxies, type: select, include-all: true, proxies: [DIRECT], icon: https://raw.githubusercontent.com/Orz-3/face/master/Global.png}
+  - {name: Telegram, <<: *telegram, icon: https://raw.githubusercontent.com/Orz-3/face/master/Message.png}
+  - {name: AI, <<: *select, icon: https://raw.githubusercontent.com/Orz-3/face/master/Static.png}
+
+#分流订阅
+rule-providers:
+  Apple: {<<: *c, path: ./rule/Apple.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Apple.list}
+  Telegram: {<<: *c, path: ./rule/Telegram.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Telegram.list}
+  AI: {<<: *c, path: ./rule/AI.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/AI.list}
+  Steam: {<<: *c, path: ./rule/AI.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Steam.list}
+
+#规则
+rules:
+  - RULE-SET,Apple,DIRECT
+  - RULE-SET,AI,AI
+  - RULE-SET,Telegram,Telegram
+  - RULE-SET,Steam,Proxies
+  - GEOSITE,github,Proxies
+  - GEOSITE,microsoft,DIRECT
+  - GEOSITE,gfw,Proxies
+  - GEOSITE,cn,DIRECT
+  - GEOIP,lan,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,Proxies
