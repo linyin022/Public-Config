@@ -1,4 +1,5 @@
 dns:
+  enable: true
   prefer-h3: true
   default-nameserver:
     - 180.184.1.1
@@ -99,12 +100,18 @@ rule-providers:
     path: ./rule/AI.list
     url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Steam.list
 
+  ProxyLite:
+    <<: *classical
+    path: ./rule/ProxyLite.list
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyLite.list
+
 #规则
 rules:
 #  - RULE-SET,Apple,DIRECT
   - RULE-SET,AI,AI
   - RULE-SET,Telegram,Telegram
   - RULE-SET,Steam,Proxies
+  - RULE-SET,ProxyLite,Proxies
   - GEOSITE,github,Proxies
   - GEOSITE,microsoft,DIRECT
   - GEOSITE,gfw,Proxies
