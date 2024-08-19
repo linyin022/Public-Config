@@ -105,13 +105,25 @@ rule-providers:
     path: ./rule/ProxyLite.list
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyLite.list
 
+  PricateTraker:
+    <<: *classical
+    path: ./rule/PricateTraker.list
+    url: https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/PrivateTracker/PrivateTracker.list
+
+  ChinaASN:
+    <<: *classical
+    path: ./rule/ChinaASN.list
+    url: https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Geo_AS_CN.list
+
 #规则
 rules:
-#  - RULE-SET,Apple,DIRECT
+  #  - RULE-SET,Apple,DIRECT
   - RULE-SET,AI,AI
   - RULE-SET,Telegram,Telegram
   - RULE-SET,Steam,Proxies
   - RULE-SET,ProxyLite,Proxies
+  - RULE-SET,PricateTraker,DIRECT
+  - RULE-SET,ChinaASN,DIRECT
   - GEOSITE,github,Proxies
   - GEOSITE,microsoft,DIRECT
   - GEOSITE,gfw,Proxies
