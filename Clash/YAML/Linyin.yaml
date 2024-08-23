@@ -59,7 +59,9 @@ geox-url:
   #  geoip: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip-lite.dat"
   #  mmdb: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country-lite.mmdb"
 
-telegram: &telegram {type: select, include-all: true, filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)|(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)"}
+telegram: &telegram {type: select, include-all: true, filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)|🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$"}
+cold: &cold {type: select, include-all: true, filter: "^(?=.*(.))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b)|🇭🇰|香港|(\b(HK|Hong)\b)|🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)|🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)|🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b))).*$"}
+hold: &hold {type: select, include-all: true, filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)|🇹🇼|🇨🇳|台湾|(\b(TW|Tai|Taiwan)\b)|🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$"}
 select: &select {type: select, include-all: true}
 # classical规则相关
 classical: &classical {type: http, behavior: classical, format: text, interval: 3600}
@@ -74,9 +76,10 @@ i: &i {type: http, behavior: ipcidr, format: text, interval: 86400}
 
 #分流策略
 proxy-groups:
-  - {name: Proxies, type: select, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/face/master/Global.png}
+  - {name: Proxies, <<: *hold, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/face/master/Global.png}
   - {name: Telegram, <<: *telegram, icon: https://raw.githubusercontent.com/Orz-3/face/master/Message.png}
-  - {name: AI, type: select, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/face/master/Static.png}
+  - {name: AI, type: select, filter: "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)", include-all: true, icon: https://raw.githubusercontent.com/Orz-3/face/master/Static.png}
+  - {name: cold, <<: *cold, icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Available.png}
 
 #分流订阅
 rule-providers:
@@ -97,8 +100,13 @@ rule-providers:
 
   Steam:
     <<: *classical
-    path: ./rule/AI.list
+    path: ./rule/Steam.list
     url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Steam.list
+
+  Speed:
+    <<: *classical
+    path: ./rule/Speed.list
+    url: https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Speedtest/Speedtest.list
 
   ProxyLite:
     <<: *classical
@@ -121,6 +129,7 @@ rules:
   - RULE-SET,AI,AI
   - RULE-SET,Telegram,Telegram
   - RULE-SET,Steam,Proxies
+  - RULE-SET,Speed,Proxies
   - RULE-SET,ProxyLite,Proxies
   - RULE-SET,PricateTraker,DIRECT
   - RULE-SET,ChinaASN,DIRECT
