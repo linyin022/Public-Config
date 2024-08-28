@@ -77,7 +77,7 @@ function main(config) {
         "RULE-SET,ai,AI",
         "RULE-SET,telegram,Telegram",
         "RULE-SET,Spotify,DIRECT",
-        "RULE-SET,proxy,Proxies",
+        "RULE-SET,Proxy,Proxies",
         "RULE-SET,cn_asn,DIRECT",
         "GEOSITE,github,Proxies",
         "GEOIP,lan,DIRECT",
