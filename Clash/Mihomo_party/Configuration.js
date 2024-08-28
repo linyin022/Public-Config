@@ -7,7 +7,7 @@ function main(config) {
             "include-all": true,
             "exclude-filter":
                 "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置",
-            filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)|🇹🇼|🇨🇳|台湾|(\b(TW|Tai|Taiwan)\b)|🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$",
+            filter: "🇭🇰|香港|HK|Hong|Hong Kong|🇸🇬|新加坡|狮|SG|Singapore|🇹🇼|🇨🇳|台湾|TW|Tai|Taiwan|🇯🇵|日本|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|🇺🇸|美国|US|United States",
             proxies: ["Universal"]
         },
         {
@@ -17,7 +17,7 @@ function main(config) {
             "include-all": true,
             "exclude-filter":
                 "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置",
-            filter: "(?i)🇭🇰|香港|(\b(HK|Hong|Hong Kong)\b)|🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)"
+            filter: "🇭🇰|香港|HK|Hong|Hong Kong|🇸🇬|新加坡|狮|SG|Singapore"
         },
         {
             icon: "https://raw.githubusercontent.com/Orz-3/face/master/Static.png",
@@ -26,14 +26,15 @@ function main(config) {
             "include-all": true,
             "exclude-filter":
                 "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置",
-            filter: "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)"
+            filter: "🇺🇸|美国|洛杉矶|圣何塞|US|United States"
         },
         {
             icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Available.png",
             name: "Universal",
             type: "select",
             "include-all": true,
-            filter: "^(?=.*(.))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b)|🇭🇰|香港|(\b(HK|Hong)\b)|🇹🇼|🇨🇳|台湾|(\b(TW|Tai|Taiwan)\b)|🇯🇵|日本|(\b(JP|Japan)\b)|🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)|🇺🇸|美国|(\b(US|United States)\b))).*$"
+            "exclude-filter":
+                "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|🇭🇰|香港|HK|Hong|Hong Kong|🇸🇬|新加坡|狮|SG|Singapore|🇹🇼|🇨🇳|台湾|TW|Tai|Taiwan|🇯🇵|日本|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|🇺🇸|美国|US|United States",
         }
     ];
     if (!config['rule-providers']) {
