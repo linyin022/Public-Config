@@ -1,7 +1,7 @@
 function main(config) {
     config["proxy-groups"] = [
         {
-            icon: "https://raw.githubusercontent.com/Orz-3/face/master/Global.png",
+            icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Auto_Speed.png",
             name: "Proxies",
             type: "select",
             "include-all": true,
@@ -10,7 +10,7 @@ function main(config) {
             filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)|🇹🇼|🇨🇳|台湾|(\b(TW|Tai|Taiwan)\b)|🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$",
         },
         {
-            icon: "https://raw.githubusercontent.com/Orz-3/face/master/Message.png",
+            icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Telegram.png",
             name: "Telegram",
             type: "select",
             "include-all": true,
@@ -19,7 +19,7 @@ function main(config) {
             filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)|🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)"
         },
         {
-            icon: "https://raw.githubusercontent.com/Orz-3/face/master/Static.png",
+            icon: "https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/%23.png",
             name: "AI",
             type: "select",
             "include-all": true,
