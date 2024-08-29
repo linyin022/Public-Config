@@ -1,0 +1,77 @@
+proxy-groups:
+  - name: Proxies
+    type: select
+    icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Auto_Speed.png"
+    include-all: true
+    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置"
+    filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)|🇹🇼|🇨🇳|台湾|(\b(TW|Tai|Taiwan)\b)|🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$"
+
+  - name: Telegram
+    type: select
+    icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Telegram.png"
+    include-all: true
+    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置"
+    # filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)|🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)"
+
+  - name: AI
+    type: select
+    icon: "https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/%23.png"
+    include-all: true
+    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置"
+
+  - name: GLOBAL
+    type: select
+    icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Final.png"
+    include-all: true
+
+rule-providers:
+  cn_asn:
+    url: "https://whatshub.top/rule/ASN-CN.list"
+    path: "./ruleset/cn_asn.list"
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+  telegram:
+    url: "https://github.com/Repcz/Tool/raw/X/Clash/Rules/Telegram.list"
+    path: "./ruleset/telegram.list"
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+  ai:
+    url: "https://github.com/Repcz/Tool/raw/X/Clash/Rules/AI.list"
+    path: "./ruleset/ai.yaml"
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+  Spotify:
+    url: "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Spotify/Spotify.list"
+    path: "./ruleset/spotify.list"
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+  Proxy:
+    url: "https://whatshub.top/rule/Proxy.list"
+    path: "./ruleset/Proxy.list"
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+rules:
+  - RULE-SET,ai,AI
+  - RULE-SET,telegram,Telegram
+  - RULE-SET,Spotify,DIRECT
+  - RULE-SET,Proxy,Proxies
+  - RULE-SET,cn_asn,DIRECT
+  - GEOSITE,github,Proxies
+  - GEOIP,lan,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,GLOBAL
