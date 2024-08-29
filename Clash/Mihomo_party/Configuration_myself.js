@@ -25,6 +25,12 @@ function main(config) {
             "include-all": true,
             "exclude-filter":
                 "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置",
+        },
+        {
+            icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Final.png",
+            name: "GLOBAL",
+            type: "select",
+            "include-all": true,
         }
     ];
     if (!config['rule-providers']) {

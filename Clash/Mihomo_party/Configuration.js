@@ -35,6 +35,12 @@ function main(config) {
             "include-all": true,
             "exclude-filter":
                 "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|🇭🇰|香港|HK|Hong|Hong Kong|🇸🇬|新加坡|狮|SG|Singapore|🇹🇼|🇨🇳|台湾|TW|Tai|Taiwan|🇯🇵|日本|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|🇺🇸|美国|US|United States",
+        },
+        {
+            icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Final.png",
+            name: "GLOBAL",
+            type: "select",
+            "include-all": true,
         }
     ];
     if (!config['rule-providers']) {
