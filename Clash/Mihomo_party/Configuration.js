@@ -86,10 +86,19 @@ function main(config) {
             interval: 86400,
             format: "text",
             type: "http",
+        },
+        WeChat: {
+            url: "https://whatshub.top/rule/WeChat.list",
+            path: "./ruleset/WeChat.list",
+            behavior: "classical",
+            interval: 86400,
+            format: "text",
+            type: "http",
         }
     });
 
     config["rules"] = [
+        "RULE-SET,WeChat,DIRECT",
         "RULE-SET,ai,AI",
         "RULE-SET,telegram,Telegram",
         "RULE-SET,Spotify,DIRECT",
