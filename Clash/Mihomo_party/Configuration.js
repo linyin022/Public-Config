@@ -94,10 +94,19 @@ function main(config) {
             interval: 86400,
             format: "text",
             type: "http",
+        },
+        PTDomain: {
+            url: "https://raw.githubusercontent.com/linyin022/Public-Config/main/Clash/Rule/PTDomain.list",
+            path: "./ruleset/PTDomain.list",
+            behavior: "classical",
+            interval: 86400,
+            format: "text",
+            type: "http",
         }
     });
 
     config["rules"] = [
+        "RULE-SET,PTDomain,DIRECT",
         "RULE-SET,WeChat,DIRECT",
         "RULE-SET,ai,AI",
         "RULE-SET,telegram,Telegram",
