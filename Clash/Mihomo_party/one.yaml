@@ -89,15 +89,17 @@ proxy-groups:
     proxies:
       - Universal
 
-  - icon: https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/%23.png
-    name: AIGC
-    type: select
-    include-all: true
-
   - icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Telegram.png
     name: Telegram
     type: select
     include-all: true
+    filter: 🇭🇰|香港|HK|Hong|Hong Kong|🇸🇬|新加坡|狮|SG|Singapore
+
+  - icon: https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/%23.png
+    name: AIGC
+    type: select
+    include-all: true
+    filter: 🇺🇸|美国|洛杉矶|圣何塞|US|United States
 
   - icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Available.png
     name: Universal
