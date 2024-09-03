@@ -79,6 +79,14 @@ rule-providers:
     format: text
     type: http
 
+  pt_domain:
+    url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/linyin022/Public-Config/main/Clash/Rule/PTDomain.list
+    path: ./ruleset/pt_domain.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
 proxy-groups:
   - icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Auto_Speed.png
     include-all: true
@@ -114,6 +122,7 @@ proxy-groups:
     type: select
 
 rules:
+  - "RULE-SET,pt_domain,DIRECT"
   - "RULE-SET,wechat,DIRECT"
   - "RULE-SET,private,DIRECT"
   - "RULE-SET,spotify,DIRECT"
