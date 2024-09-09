@@ -1,0 +1,8 @@
+# Author:https://github.com/linyin022
+# TG:https://t.me/yome2_bot
+# 官方文档：https://wiki.metacubex.one/
+# 最后更新时间: 2024-09-09 17:15:04
+# ================
+
++rules:
+  - "DOMAIN-SUFFIX,haidan.video,DIRECT"
