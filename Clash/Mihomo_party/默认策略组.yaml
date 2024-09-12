@@ -1,3 +1,4 @@
+#策略组
 proxy-groups:
   - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Auto_Speed.png
     include-all: true
@@ -31,3 +32,51 @@ proxy-groups:
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     name: GLOBAL
     type: select
+
+#规则集
+rule-providers:
+
+  cn_asn:
+    url: https://whatshub.top/rule/ASN-CN.list
+    path: ./ruleset/cn_asn.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+  telegram:
+    url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/Telegram.list
+    path: ./ruleset/telegram.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+  ai:
+    url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/AI.list
+    path: ./ruleset/ai.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+  wechat:
+    url: https://whatshub.top/rule/WeChat.list
+    path: ./ruleset/wechat.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+#规则所属策略组
+rules:
+  - RULE-SET,telegram,Telegram
+  - RULE-SET,ai,AI
+  - RULE-SET,wechat,DIRECT
+  - GEOSITE,spotify,Proxies
+  - GEOSITE,github,Proxies
+  - GEOSITE,gfw,Proxies
+  - RULE-SET,cn_asn,DIRECT
+  - GEOIP,lan,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,Proxies
