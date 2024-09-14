@@ -139,6 +139,7 @@ rules:
   - GEOSITE,spotify,Proxies
   - GEOSITE,github,Proxies
   - GEOSITE,gfw,Proxies
+  - GEOSITE,microsoft,DIRECT
   - RULE-SET,cn_asn,DIRECT
   - GEOIP,lan,DIRECT
   - GEOIP,CN,DIRECT
