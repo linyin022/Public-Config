@@ -7,3 +7,5 @@
 +rules:
   - "DOMAIN-SUFFIX,haidan.video,DIRECT"
   - "DOMAIN-SUFFIX,zhujiwiki.com,DIRECT"
+  - "DOMAIN-SUFFIX,ptchina.org,DIRECT"
+  - "DOMAIN-SUFFIX,linux.do,Proxies"
