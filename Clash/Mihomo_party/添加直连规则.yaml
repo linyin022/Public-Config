@@ -5,7 +5,14 @@
 # ================
 
 +rules:
-  - "DOMAIN-SUFFIX,haidan.video,DIRECT"
+    #website
   - "DOMAIN-SUFFIX,zhujiwiki.com,DIRECT"
-  - "DOMAIN-SUFFIX,ptchina.org,DIRECT"
   - "DOMAIN-SUFFIX,linux.do,Proxies"
+  - "DOMAIN-SUFFIX,nodeseek.com,Proxies"
+  - "DOMAIN-SUFFIX,1password.com,Proxies"
+    #pt_domain
+  - "DOMAIN-SUFFIX,haidan.video,Proxies"
+  - "DOMAIN-SUFFIX,ptcafe.club,Proxies"
+  - "DOMAIN-SUFFIX,ptchina.org,Proxies"
+  - "DOMAIN-SUFFIX,icc2022.com,Proxies"
+  - "DOMAIN-SUFFIX,hdpt.xyz,Proxies"
