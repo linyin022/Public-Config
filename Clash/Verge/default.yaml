@@ -1,0 +1,170 @@
+mixed-port: 7890
+# 启用 TCP 并发连接
+tcp-concurrent: true
+
+# 工作模式：rule/global/direct/script
+mode: rule
+
+# 禁用 IPv6
+ipv6: false
+
+# 设置日志输出级别: silent/error/warning/info/debug
+log-level: info
+
+# 全局 TLS 指纹
+global-client-fingerprint: chrome
+
+# 匹配所有进程（always/strict/off）
+find-process-mode: strict
+
+# 去除握手等额外延迟
+unified-delay: true
+
+# 外部控制器配置
+external-controller: 127.0.0.1:9090
+
+# 外部 UI 配置
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+# 地理数据模式
+geodata-mode: true
+geox-url:
+  geoip: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
+  asn: "https://mirror.ghproxy.com/https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+
+# Tun 配置（已注释，如需启用请取消注释）
+tun:
+# enable: true
+# stack: mixed
+# dns-hijack:
+#   - any:53
+
+# DNS 配置
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  listen: :1053
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*'
+    - '+.lan'
+    - '+.local'
+    - '+.direct'
+    - '+.msftconnecttest.com'
+    - '+.msftncsi.com'
+  default-nameserver:
+    - system
+  nameserver:
+    - 223.5.5.5
+    - 180.184.1.1
+  nameserver-policy:
+    'geosite:cn': system
+    'geosite:gfw,geolocation-!cn':
+      - quic://223.5.5.5
+      - quic://223.6.6.6
+      - https://158170.alidns.com/dns-query
+
+# 嗅探器配置
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports:
+        - 80
+        - 8080-8880
+      override-destination: true
+    TLS:
+      ports:
+        - 443
+        - 8443
+    QUIC:
+      ports:
+        - 443
+        - 8443
+  force-domain:
+    - '+.v2ex.com'
+
+# 代理策略组
+proxy-groups:
+  - icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Auto_Speed.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    name: Proxies
+    type: select
+
+  - icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Telegram.png
+    name: Telegram
+    type: select
+    include-all: true
+
+  - icon: https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/%23.png
+    name: AI
+    type: select
+    include-all: true
+
+# 规则提供者
+rule-providers:
+  cn_asn:
+    type: http
+    behavior: classical
+    url: https://whatshub.top/rule/ASN-CN.list
+    path: ./ruleset/cn_asn.list
+    interval: 86400
+    format: text
+
+  telegram:
+    type: http
+    behavior: classical
+    url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/Telegram.list
+    path: ./ruleset/telegram.list
+    interval: 86400
+    format: text
+
+  ai:
+    type: http
+    behavior: classical
+    url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/AI.list
+    path: ./ruleset/ai.list
+    interval: 86400
+    format: text
+
+  wechat:
+    type: http
+    behavior: classical
+    url: https://whatshub.top/rule/WeChat.list
+    path: ./ruleset/wechat.list
+    interval: 86400
+    format: text
+
+# 规则集
+rules:
+  #website
+  - "DOMAIN-SUFFIX,zhujiwiki.com,DIRECT"
+  - "DOMAIN-SUFFIX,linux.do,Proxies"
+  - "DOMAIN-SUFFIX,nodeseek.com,Proxies"
+  - "DOMAIN-SUFFIX,1password.com,Proxies"
+  #pt_domain
+  - "DOMAIN-SUFFIX,haidan.video,Proxies"
+  - "DOMAIN-SUFFIX,ptcafe.club,Proxies"
+  - "DOMAIN-SUFFIX,ptchina.org,Proxies"
+  - "DOMAIN-SUFFIX,icc2022.com,Proxies"
+  - "DOMAIN-SUFFIX,hdpt.xyz,Proxies"
+  - RULE-SET,telegram,Telegram
+  - RULE-SET,ai,AI
+  - RULE-SET,wechat,DIRECT
+  - GEOSITE,spotify,Proxies
+  - GEOSITE,github,Proxies
+  - GEOSITE,gfw,Proxies
+  - GEOSITE,microsoft,DIRECT
+  - RULE-SET,cn_asn,DIRECT
+  - GEOIP,lan,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,Proxies
