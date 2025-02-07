@@ -23,10 +23,10 @@ profile:
 
 geodata-mode: true
 geox-url:
-  geoip: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
-  geosite: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
-  mmdb: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
-  asn: "https://mirror.ghproxy.com/https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
+  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
 
 # tun:
 #   enable: true
@@ -63,7 +63,7 @@ sniffer:
 
 #策略组
 proxy-groups:
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Auto_Speed.png
+  - icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Auto_Speed.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     name: Proxies
@@ -72,25 +72,25 @@ proxy-groups:
     proxies:
       - Universal
 
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Telegram.png
+  - icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Telegram.png
     name: Telegram
     type: select
     include-all: true
     filter: 🇭🇰|香港|HK|Hong|Hong Kong|🇸🇬|新加坡|狮|SG|Singapore
 
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/%23.png
+  - icon: https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/%23.png
     name: AI
     type: select
     include-all: true
     filter: 🇺🇸|美国|洛杉矶|圣何塞|US|United States
 
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Available.png
+  - icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Available.png
     name: Universal
     type: select
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|🇭🇰|香港|HK|Hong|Hong Kong|🇸🇬|新加坡|狮|SG|Singapore|🇹🇼|🇨🇳|台湾|TW|Tai|Taiwan|🇯🇵|日本|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|🇺🇸|美国|US|United States
 
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Final.png
+  - icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Final.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     name: GLOBAL
@@ -108,7 +108,7 @@ rule-providers:
     type: http
 
   telegram:
-    url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/Telegram.list
+    url: https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/Telegram.list
     path: ./ruleset/telegram.list
     behavior: classical
     interval: 86400
@@ -116,7 +116,7 @@ rule-providers:
     type: http
 
   ai:
-    url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/AI.list
+    url: https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/AI.list
     path: ./ruleset/ai.list
     behavior: classical
     interval: 86400
