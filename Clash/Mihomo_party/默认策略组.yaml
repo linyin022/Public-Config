@@ -116,7 +116,7 @@ rule-providers:
     type: http
 
   ai:
-    url: https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/AI.list
+    url: https://rule.kelee.one/Clash/OpenAI.yaml
     path: ./ruleset/ai.list
     behavior: classical
     interval: 86400
