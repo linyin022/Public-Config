@@ -104,7 +104,7 @@ proxy-groups:
     type: select
     include-all: true
 
-  - icon:  https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png
+  - icon:  https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/FilmAffinity.png
     name: Emby
     type: select
     include-all: true
