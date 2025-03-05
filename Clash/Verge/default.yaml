@@ -34,17 +34,17 @@ profile:
 # 地理数据模式
 geodata-mode: true
 geox-url:
-  geoip: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
-  geosite: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
-  mmdb: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
-  asn: "https://mirror.ghproxy.com/https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+  geoip: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/geoip.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
+  asn: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/GeoLite2-ASN.mmdb"
 
-# Tun 配置（已注释，如需启用请取消注释）
-tun:
-# enable: true
-# stack: mixed
-# dns-hijack:
-#   - any:53
+  # Tun 配置（已注释，如需启用请取消注释）
+  # tun:
+  # enable: true
+  # stack: mixed
+  # dns-hijack:
+  #   - any:53
 
 # DNS 配置
 dns:
@@ -53,24 +53,18 @@ dns:
   enhanced-mode: fake-ip
   listen: :1053
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*'
-    - '+.lan'
-    - '+.local'
-    - '+.direct'
-    - '+.msftconnecttest.com'
-    - '+.msftncsi.com'
-  default-nameserver:
-    - system
-  nameserver:
-    - 223.5.5.5
-    - 180.184.1.1
-  nameserver-policy:
-    'geosite:cn': system
-    'geosite:gfw,geolocation-!cn':
-      - quic://223.5.5.5
-      - quic://223.6.6.6
-      - https://158170.alidns.com/dns-query
+  fake-ip-filter: ['*', '+.lan', '+.local', '+.direct', '+.msftconnecttest.com', '+.msftncsi.com']
+#  default-nameserver:
+#    - system
+  nameserver: [223.5.5.5, 180.184.1.1]
+#    - 223.5.5.5
+#    - 180.184.1.1
+#  nameserver-policy:
+#    'geosite:cn': system
+#    'geosite:gfw,geolocation-!cn':
+#      - quic://223.5.5.5
+#      - quic://223.6.6.6
+#      - https://158170.alidns.com/dns-query
 
 # 嗅探器配置
 sniffer:
@@ -110,60 +104,63 @@ proxy-groups:
     type: select
     include-all: true
 
+  - icon:  https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png
+    name: Emby
+    type: select
+    include-all: true
+
 # 规则提供者
 rule-providers:
   cn_asn:
-    type: http
-    behavior: classical
     url: https://whatshub.top/rule/ASN-CN.list
     path: ./ruleset/cn_asn.list
+    behavior: classical
     interval: 86400
     format: text
+    type: http
 
   telegram:
-    type: http
-    behavior: classical
-    url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/Telegram.list
+    url: https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/Telegram.list
     path: ./ruleset/telegram.list
+    behavior: classical
     interval: 86400
     format: text
+    type: http
 
   ai:
-    type: http
-    behavior: classical
-    url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/AI.list
+    url: https://rule.kelee.one/Clash/OpenAI.yaml
     path: ./ruleset/ai.list
+    behavior: classical
     interval: 86400
-    format: text
+    format: yaml
+    type: http
 
   wechat:
-    type: http
-    behavior: classical
     url: https://whatshub.top/rule/WeChat.list
     path: ./ruleset/wechat.list
+    behavior: classical
     interval: 86400
     format: text
+    type: http
+
+  emby:
+    url: https://whatshub.top/rule/Emby.list
+    path: ./ruleset/emby.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
 
 # 规则集
 rules:
-  #website
-  - "DOMAIN-SUFFIX,zhujiwiki.com,DIRECT"
-  - "DOMAIN-SUFFIX,linux.do,Proxies"
-  - "DOMAIN-SUFFIX,nodeseek.com,Proxies"
-  - "DOMAIN-SUFFIX,1password.com,Proxies"
-  #pt_domain
-  - "DOMAIN-SUFFIX,haidan.video,Proxies"
-  - "DOMAIN-SUFFIX,ptcafe.club,Proxies"
-  - "DOMAIN-SUFFIX,ptchina.org,Proxies"
-  - "DOMAIN-SUFFIX,icc2022.com,Proxies"
-  - "DOMAIN-SUFFIX,hdpt.xyz,Proxies"
   - RULE-SET,telegram,Telegram
   - RULE-SET,ai,AI
   - RULE-SET,wechat,DIRECT
+  - RULE-SET,emby,Emby
   - GEOSITE,spotify,Proxies
   - GEOSITE,github,Proxies
-  - GEOSITE,gfw,Proxies
   - GEOSITE,microsoft,DIRECT
+  - GEOSITE,gfw,Proxies
   - RULE-SET,cn_asn,DIRECT
   - GEOIP,lan,DIRECT
   - GEOIP,CN,DIRECT
