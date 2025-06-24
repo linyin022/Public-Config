@@ -24,7 +24,7 @@ cat > /etc/XrayR/config.yml <<EOF
 Log:
   Level: warning
 Nodes:
-  - PanelType: "V2board"
+  - PanelType: "NewV2board"
     ApiConfig:
       ApiHost: "$APIHOST"
       ApiKey: "$APIKEY"
