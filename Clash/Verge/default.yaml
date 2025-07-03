@@ -21,11 +21,11 @@ find-process-mode: strict
 unified-delay: true
 
 # 外部控制器配置
-external-controller: 127.0.0.1:9090
+# external-controller: 127.0.0.1:9090
 
 # 外部 UI 配置
-external-ui: ui
-external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+# external-ui: ui
+# external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
 profile:
   store-selected: true
@@ -40,11 +40,10 @@ geox-url:
   asn: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/GeoLite2-ASN.mmdb"
 
   # Tun 配置（已注释，如需启用请取消注释）
-  # tun:
-  # enable: true
-  # stack: mixed
-  # dns-hijack:
-  #   - any:53
+# tun:
+#   enable: true
+#   stack: mixed
+#   dns-hijack: [any:53]
 
 # DNS 配置
 dns:
@@ -54,43 +53,25 @@ dns:
   listen: :1053
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter: ['*', '+.lan', '+.local', '+.direct', '+.msftconnecttest.com', '+.msftncsi.com']
-#  default-nameserver:
-#    - system
-  nameserver: [223.5.5.5, 180.184.1.1]
-#    - 223.5.5.5
-#    - 180.184.1.1
-#  nameserver-policy:
-#    'geosite:cn': system
-#    'geosite:gfw,geolocation-!cn':
-#      - quic://223.5.5.5
-#      - quic://223.6.6.6
-#      - https://158170.alidns.com/dns-query
+  nameserver:
+    # - https://158170.alidns.com/dns-query
+    - 223.5.5.5
+    - 119.29.29.29
+  # - 180.184.1.1
 
 # 嗅探器配置
 sniffer:
   enable: true
   sniff:
-    HTTP:
-      ports:
-        - 80
-        - 8080-8880
-      override-destination: true
-    TLS:
-      ports:
-        - 443
-        - 8443
-    QUIC:
-      ports:
-        - 443
-        - 8443
-  force-domain:
-    - '+.v2ex.com'
+    HTTP: { ports: [80], override-destination: true }
+    TLS: { ports: [443, 8443] }
+    QUIC: { ports: [443, 8443] }
 
 # 代理策略组
 proxy-groups:
   - icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Auto_Speed.png
     include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    exclude-filter: (?i)GB|Traffic|Expire|频道|订阅|ISP|流量|到期|重置
     name: Proxies
     type: select
 
@@ -104,6 +85,11 @@ proxy-groups:
     type: select
     include-all: true
 
+  - icon: https://github.com/Orz-3/face/raw/master/Scholar.png
+    name: Crypto
+    type: select
+    include-all: true
+
   - icon:  https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/FilmAffinity.png
     name: Emby
     type: select
@@ -111,9 +97,9 @@ proxy-groups:
 
 # 规则提供者
 rule-providers:
-  cn_asn:
-    url: https://whatshub.top/rule/ASN-CN.list
-    path: ./ruleset/cn_asn.list
+  ChinaMax_All:
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/ChinaMax/ChinaMax_All.list
+    path: ./ruleset/ChinaMax_All.list
     behavior: classical
     interval: 86400
     format: text
@@ -144,8 +130,40 @@ rule-providers:
     type: http
 
   emby:
-    url: https://whatshub.top/rule/Emby.list
+    url: https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/Emby.list
     path: ./ruleset/emby.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+  sougou:
+    url: https://ruleset.skk.moe/List/non_ip/sogouinput.conf
+    path: ./ruleset/sougou.conf
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+  reject-drop:
+    url: https://ruleset.skk.moe/List/non_ip/reject-drop.conf
+    path: ./ruleset/reject-drop.conf
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+  reject-no-drop:
+    url: https://ruleset.skk.moe/List/non_ip/reject-no-drop.conf
+    path: ./ruleset/reject-no-drop.conf
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+  crypto:
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Crypto/Crypto.list
+    path: ./ruleset/crypto.list
     behavior: classical
     interval: 86400
     format: text
@@ -153,7 +171,14 @@ rule-providers:
 
 # 规则集
 rules:
+  - RULE-SET,sougou,REJECT
+  - DOMAIN-SUFFIX,mcdn.bilivideo.com,REJECT
+  - DOMAIN-SUFFIX,mcdn.bilivideo.cn,REJECT
+  - DOMAIN-SUFFIX,szbdyd.com,REJECT
+  - RULE-SET,reject-no-drop,REJECT
+  - RULE-SET,reject-drop,REJECT-DROP
   - RULE-SET,telegram,Telegram
+  - RULE-SET,crypto,Crypto
   - RULE-SET,ai,AI
   - RULE-SET,wechat,DIRECT
   - RULE-SET,emby,Emby
@@ -161,7 +186,7 @@ rules:
   - GEOSITE,github,Proxies
   - GEOSITE,microsoft,DIRECT
   - GEOSITE,gfw,Proxies
-  - RULE-SET,cn_asn,DIRECT
+  - RULE-SET,ChinaMax_All,DIRECT
   - GEOIP,lan,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,Proxies
