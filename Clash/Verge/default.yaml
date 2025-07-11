@@ -1,92 +1,65 @@
-mixed-port: 7890
-# 启用 TCP 并发连接
+mixed-port: 7897
 tcp-concurrent: true
-
-# 工作模式：rule/global/direct/script
 mode: rule
-
-# 禁用 IPv6
 ipv6: false
-
-# 设置日志输出级别: silent/error/warning/info/debug
 log-level: info
-
-# 全局 TLS 指纹
 global-client-fingerprint: chrome
-
-# 匹配所有进程（always/strict/off）
 find-process-mode: strict
-
-# 去除握手等额外延迟
 unified-delay: true
-
-# 外部控制器配置
-external-controller: 127.0.0.1:9090
-
-# 外部 UI 配置
-external-ui: ui
-external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-
 profile:
   store-selected: true
   store-fake-ip: true
-
-# 地理数据模式
 geodata-mode: true
 geox-url:
   geoip: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/geoip.dat"
   geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
   mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
   asn: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/GeoLite2-ASN.mmdb"
-
-  # Tun 配置（已注释，如需启用请取消注释）
-  # tun:
-  # enable: true
-  # stack: mixed
-  # dns-hijack:
-  #   - any:53
-
-# DNS 配置
+tun:
+  enable: true
+  stack: system
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-detect-interface: true
 dns:
   enable: true
+  listen: 0.0.0.0:53
   ipv6: false
   enhanced-mode: fake-ip
-  listen: :1053
+  prefer-h3: true
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter: ['*', '+.lan', '+.local', '+.direct', '+.msftconnecttest.com', '+.msftncsi.com']
-#  default-nameserver:
-#    - system
-  nameserver: [223.5.5.5, 180.184.1.1]
-#    - 223.5.5.5
-#    - 180.184.1.1
-#  nameserver-policy:
-#    'geosite:cn': system
-#    'geosite:gfw,geolocation-!cn':
-#      - quic://223.5.5.5
-#      - quic://223.6.6.6
-#      - https://158170.alidns.com/dns-query
-
-# 嗅探器配置
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ip-cidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/8
+      - 127.0.0.0/8
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16
+  nameserver-policy:
+    "geosite:cn":
+      - https://dns.alidns.com/dns-query
+    "geosite:geolocation-!cn":
+      - https://1.1.1.1/dns-query
 sniffer:
   enable: true
   sniff:
-    HTTP:
-      ports:
-        - 80
-        - 8080-8880
-      override-destination: true
     TLS:
-      ports:
-        - 443
-        - 8443
-    QUIC:
-      ports:
-        - 443
-        - 8443
-  force-domain:
-    - '+.v2ex.com'
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
 
-# 代理策略组
 proxy-groups:
   - icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Auto_Speed.png
     include-all: true
@@ -104,21 +77,18 @@ proxy-groups:
     type: select
     include-all: true
 
-  - icon:  https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/FilmAffinity.png
+  - icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/FilmAffinity.png
     name: Emby
+    type: select
+    include-all: true
+
+  - icon: https://github.com/Orz-3/face/raw/master/Scholar.png
+    name: Crypto
     type: select
     include-all: true
 
 # 规则提供者
 rule-providers:
-  cn_asn:
-    url: https://whatshub.top/rule/ASN-CN.list
-    path: ./ruleset/cn_asn.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-
   telegram:
     url: https://raw.githubusercontent.com/Repcz/Tool/X/Clash/Rules/Telegram.list
     path: ./ruleset/telegram.list
@@ -135,17 +105,25 @@ rule-providers:
     format: yaml
     type: http
 
-  wechat:
-    url: https://whatshub.top/rule/WeChat.list
-    path: ./ruleset/wechat.list
+  emby:
+    url: https://whatshub.top/rule/Emby.list
+    path: ./ruleset/emby.list
     behavior: classical
     interval: 86400
     format: text
     type: http
 
-  emby:
-    url: https://whatshub.top/rule/Emby.list
-    path: ./ruleset/emby.list
+  crypto:
+    url: https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Crypto/Crypto.list
+    path: ./ruleset/crypto.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+
+  ChinaIP:
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ChinaIP.list
+    path: ./ruleset/ChinaIP.list
     behavior: classical
     interval: 86400
     format: text
@@ -155,13 +133,13 @@ rule-providers:
 rules:
   - RULE-SET,telegram,Telegram
   - RULE-SET,ai,AI
-  - RULE-SET,wechat,DIRECT
   - RULE-SET,emby,Emby
+  - RULE-SET,crypto,Crypto
+  - RULE-SET,ChinaIP,ChinaIP
   - GEOSITE,spotify,Proxies
   - GEOSITE,github,Proxies
   - GEOSITE,microsoft,DIRECT
   - GEOSITE,gfw,Proxies
-  - RULE-SET,cn_asn,DIRECT
   - GEOIP,lan,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,Proxies
