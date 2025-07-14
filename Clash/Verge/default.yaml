@@ -30,6 +30,9 @@ dns:
   enhanced-mode: fake-ip
   prefer-h3: true
   fake-ip-range: 198.18.0.1/16
+  # default-nameserver: [223.5.5.5, 119.29.29.29]
+  # direct-nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
+  # nameserver: ['https://8.8.8.8/dns-query#Proxies', 'https://1.1.1.1/dns-query#Proxies']
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
@@ -50,7 +53,7 @@ dns:
     "geosite:cn":
       - https://dns.alidns.com/dns-query
     "geosite:geolocation-!cn":
-      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
 sniffer:
   enable: true
   sniff:
@@ -135,7 +138,7 @@ rules:
   - RULE-SET,ai,AI
   - RULE-SET,emby,Emby
   - RULE-SET,crypto,Crypto
-  - RULE-SET,ChinaIP,ChinaIP
+  - RULE-SET,ChinaIP,DIRECT
   - GEOSITE,spotify,Proxies
   - GEOSITE,github,Proxies
   - GEOSITE,microsoft,DIRECT
