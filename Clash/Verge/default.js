@@ -151,6 +151,11 @@ function main(config) {
             ...ruleProviderCommon,
             "url": "https://github.com/Repcz/Tool/raw/X/Clash/Rules/ChinaIP.list",
             "path": "./rules/ChinaIP.list"
+        },
+        "LAN": {
+            ...ruleProviderCommon,
+            "url": "https://github.com/Repcz/Tool/raw/X/Clash/Rules/Lan.list",
+            "path": "./rules/Lan.list"
         }
     };
 
@@ -159,13 +164,13 @@ function main(config) {
         "DOMAIN-SUFFIX,mcdn.bilivideo.com,REJECT",
         "DOMAIN-SUFFIX,mcdn.bilivideo.cn,REJECT",
         "DOMAIN-SUFFIX,szbdyd.com,REJECT",
+        "RULE-SET,LAN,DIRECT",
         "RULE-SET,Telegram,Telegram",
         "RULE-SET,Crypto,Crypto",
         "RULE-SET,ChinaIP,DIRECT",
         "GEOSITE,gfw,Proxies",
         "GEOIP,lan,DIRECT",
         "GEOIP,CN,DIRECT",
-        "GEOIP,LAN,DIRECT",
         "SRC-GEOIP,cn,DIRECT",
         "MATCH,Proxies"
     ];
