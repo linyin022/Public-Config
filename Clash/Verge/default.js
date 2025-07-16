@@ -156,12 +156,16 @@ function main(config) {
 
     // 覆盖规则
     config["rules"] = [
+        "DOMAIN-SUFFIX,mcdn.bilivideo.com,REJECT",
+        "DOMAIN-SUFFIX,mcdn.bilivideo.cn,REJECT",
+        "DOMAIN-SUFFIX,szbdyd.com,REJECT",
         "RULE-SET,Telegram,Telegram",
         "RULE-SET,Crypto,Crypto",
         "RULE-SET,ChinaIP,DIRECT",
         "GEOSITE,gfw,Proxies",
         "GEOIP,lan,DIRECT",
         "GEOIP,CN,DIRECT",
+        "GEOIP,LAN,DIRECT",
         "SRC-GEOIP,cn,DIRECT",
         "MATCH,Proxies"
     ];
