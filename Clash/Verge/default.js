@@ -156,6 +156,11 @@ function main(config) {
             ...ruleProviderCommon,
             "url": "https://github.com/Repcz/Tool/raw/X/Clash/Rules/Lan.list",
             "path": "./rules/Lan.list"
+        },
+        "AI": {
+            ...ruleProviderCommon,
+            "url": "https://github.com/Repcz/Tool/raw/X/Clash/Rules/AI.list",
+            "path": "./rules/AI.list"
         }
     };
 
@@ -167,6 +172,7 @@ function main(config) {
         "RULE-SET,LAN,DIRECT",
         "RULE-SET,Telegram,Telegram",
         "RULE-SET,Crypto,Crypto",
+        "RULE-SET,AI,AI",
         "RULE-SET,ChinaIP,DIRECT",
         "GEOSITE,gfw,Proxies",
         "GEOIP,lan,DIRECT",
