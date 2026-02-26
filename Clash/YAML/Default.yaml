@@ -1,0 +1,83 @@
+port: 7890
+socks-port: 7891
+mixed-port: 7892
+tcp-concurrent: true #tcp并发
+unified-delay: true #统一延迟 计算RTT 消除连接握手等带来的延迟差异
+allow-lan: true #允许lan连接 其他设备通过代理端口访问互联网
+ipv6: false #关闭ipv6
+mode: rule #运行模式 !rule global direct
+log-level: info
+find-process-mode: strict #进程匹配模式 !strict always off
+global-client-fingerprint: chrome #指纹客户端 支持协议vless vmess trojan
+
+
+sniffing:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+
+proxy-groups:
+  - name: Proxies
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/Orz-3/face@raw/master/Global.png"
+    include-all: true
+
+  - name: Telegram
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Social_Media/Telegram.png"
+    include-all: true
+
+  - name: AI Suite
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/Orz-3/face@master/Unicorn.png"
+    include-all: true
+
+rule-anchor:
+  classical_yaml: &classical_yaml {type: http, interval: 86400, behavior: classical, format: yaml}
+  classical: &classical {type: http, interval: 86400, behavior: classical, format: text}
+rule-providers:
+  ChinaMaxNoMedia:
+    <<: *classical_yaml
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMaxNoMedia/ChinaMaxNoMedia_Classical.yaml
+    path: ./Rules/ChinaMaxNoMedia
+  ChinaMedia:
+    <<: *classical_yaml
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMedia/ChinaMedia.yaml
+    path: ./Rules/ChinaMedia
+  ASNCN:
+    <<: *classical
+    url: https://cdn.jsdelivr.net/gh/VirgilClyne/GetSomeFries@main/ruleset/ASN.China.list
+    path: ./Rules/ASNCN
+  Telegram:
+    <<: *classical_yaml
+    url: https://raw.dler.io/dler-io/Rules/main/Clash/Provider/Telegram.yaml
+    path: ./Rules/Telegram
+  LAN:
+    <<: *classical_yaml
+    url: https://raw.dler.io/dler-io/Rules/main/Clash/Provider/LAN.yaml
+    path: ./Rules/Lan
+  AI:
+    <<: *classical_yaml
+    url: https://raw.dler.io/dler-io/Rules/main/Clash/Provider/AI%20Suite.yaml
+    path: ./Rules/AI
+
+rules:
+  - RULE-SET,LAN,DIRECT
+  - DOMAIN-SUFFIX,mcdn.bilivideo.com,REJECT
+  - DOMAIN-SUFFIX,mcdn.bilivideo.cn,REJECT
+  - DOMAIN-SUFFIX,szbdyd.com,REJECT
+
+  # 规则集
+  - RULE-SET,Telegram,Telegram
+  - RULE-SET,AI,AI Suite
+  - RULE-SET,ChinaMedia,DIRECT
+  - RULE-SET,ChinaMaxNoMedia,DIRECT
+  - RULE-SET,ASNCN,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,Proxies
